@@ -2,6 +2,12 @@
 
 <%= render @notebook %>
 
+
+<% @notebook.cells.each do |cell| %>
+  <p><%= cell.content %></p>
+<% end %>
+
+<%= link_to "Add cell", new_notebook_cells_path(@notebook) %>
 <div>
   <%= link_to "Edit this notebook", edit_notebook_path(@notebook) %> |
   <%= link_to "Back to notebooks", notebooks_path %>

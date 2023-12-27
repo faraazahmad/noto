@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_210705) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_134801) do
+  create_table "cells", force: :cascade do |t|
+    t.integer "cell_type"
+    t.text "content"
+    t.text "output"
+    t.integer "notebook_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notebook_id"], name: "index_cells_on_notebook_id"
+  end
+
   create_table "notebooks", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cells", "notebooks"
 end

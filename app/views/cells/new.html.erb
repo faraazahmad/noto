@@ -1,0 +1,9 @@
+<h1>New cell</h1>
+
+<%= render "form", cell: @cell, url: notebook_cells_path(@cell.notebook, @cell) %>
+
+<br>
+
+<div>
+  <%= link_to "Back to notebook", notebook_path(@cell.notebook) %>
+</div>

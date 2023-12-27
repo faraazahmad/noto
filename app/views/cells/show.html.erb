@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @cell %>
+
+<div>
+  <%= link_to "Edit this cell", edit_cell_path(@cell) %> |
+  <%= link_to "Back to cells", cells_path %>
+
+  <%= button_to "Destroy this cell", @cell, method: :delete %>
+</div>

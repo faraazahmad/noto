@@ -1,0 +1,32 @@
+<%= form_with(model: cell, url: url) do |form| %>
+  <% if cell.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(cell.errors.count, "error") %> prohibited this cell from being saved:</h2>
+
+      <ul>
+        <% cell.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :cell_type, style: "display: block" %>
+    <%= form.number_field :cell_type %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :output, style: "display: block" %>
+    <%= form.text_area :output %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

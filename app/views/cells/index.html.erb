@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Cells</h1>
+
+<div id="cells">
+  <% @cells.each do |cell| %>
+    <%= render cell %>
+    <p>
+      <%= link_to "Show this cell", cell %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New cell", new_cell_path %>
