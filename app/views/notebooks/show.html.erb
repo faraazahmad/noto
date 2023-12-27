@@ -4,13 +4,17 @@
 
 
 <% @notebook.cells.each do |cell| %>
-  <p><%= cell.content %></p>
+  <p>
+    <% if cell.cell_type == 0 %>
+      <code><%= cell.content %></code>
+    <% else %>
+      <%= cell.content %>
+    <% end %>
+  </p>
 <% end %>
 
 <%= link_to "Add cell", new_notebook_cells_path(@notebook) %>
 <div>
   <%= link_to "Edit this notebook", edit_notebook_path(@notebook) %> |
   <%= link_to "Back to notebooks", notebooks_path %>
-
-  <%= button_to "Destroy this notebook", @notebook, method: :delete %>
 </div>
