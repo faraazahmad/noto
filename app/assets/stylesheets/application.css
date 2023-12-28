@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+body * {
+	font-family: sans-serif;
+}
+
+.cell-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 1rem;
+}
+.cell {
+	padding: 0.5rem;
+	border: solid 1px #eee;
+}
+code {
+	font-family: monospace;
+	padding: 0.25rem;
+}

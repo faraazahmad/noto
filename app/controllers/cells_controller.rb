@@ -1,6 +1,5 @@
 class CellsController < ApplicationController
   before_action :set_cell, only: %i[ show edit update destroy ]
-  before_action :set_notebook, only: %i[ new ]
 
   # GET /cells or /cells.json
   def index
@@ -50,6 +49,22 @@ class CellsController < ApplicationController
     end
   end
 
+  def run_cell
+    @cell = Cell.find(params[:id])
+    code = @cell.content
+    @cell.output = eval_with_captured_stdout{ eval(code) }
+
+    respond_to do |format|
+      if @cell.save!
+        format.html { redirect_to notebook_url(@cell.notebook), notice: "Cell was successfully updated." }
+        format.json { render :show, status: :ok, location: @cell }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @cell.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /cells/1 or /cells/1.json
   def destroy
     @cell.destroy!
@@ -63,7 +78,7 @@ class CellsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cell
-      @cell = Cell.find(params[:id])
+      @cell = Cell.find(cell_params)
     end
     
     def set_notebook
@@ -74,4 +89,17 @@ class CellsController < ApplicationController
     def cell_params
       params.require(:cell).permit(:cell_type, :content, :output, :notebook_id)
     end
+
+    def eval_with_captured_stdout
+      original_stdout = $stdout
+      $stdout = StringIO.new
+      yield                      
+      $stdout.string
+    rescue Exception => e
+      $stdout.puts e.message
+      $stdout.string
+    ensure
+      $stdout = original_stdout
+    end
+
 end

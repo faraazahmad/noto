@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+%i[ code plaintext ].each_with_index do |label, value|
+  CellType.create(label: label.to_s, value: value)
+end

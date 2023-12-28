@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_134801) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_28_181937) do
+  create_table "cell_types", force: :cascade do |t|
+    t.string "label"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cells", force: :cascade do |t|
     t.integer "cell_type"
     t.text "content"

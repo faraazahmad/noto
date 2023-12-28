@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   resources :notebooks do
-    resource :cells
+    resources :cells do
+      post 'run_cell', on: :member
+    end
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # put 'run/notebook/:notebook_id/cell/:id', to: 'cells#run', as: 'run_cell'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

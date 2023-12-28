@@ -13,17 +13,12 @@
 
   <div>
     <%= form.label :cell_type, style: "display: block" %>
-    <%= form.number_field :cell_type %>
+    <%= form.select :cell_type, CellType.all.collect { |g| [g.label, g.value] }, include_blank: false %>
   </div>
 
   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.label :output, style: "display: block" %>
-    <%= form.text_area :output %>
   </div>
 
   <div>

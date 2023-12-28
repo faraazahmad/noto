@@ -1,0 +1,2 @@
+class CellType < ApplicationRecord
+end
