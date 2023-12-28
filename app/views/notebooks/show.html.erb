@@ -19,14 +19,16 @@
         <div>
           <%= button_to "Run cell", run_cell_notebook_cell_path(@notebook, cell), method: :post %>
           <br/>
-          <code><%= cell.content %></code>
+          <pre><code><%= cell.content %></code></pre>
         </div>
       <% else %>
         <p><%= cell.content %></p>
       <% end %>
 
       <% if !cell.output.nil? && !cell.output.empty? %>
-        <p><code>&gt; <%= cell.output %></code></p>
+        <div class="output" style="max-height: 10rem; overflow: auto">
+          <pre><code>&gt; <%= cell.output %></code></pre>
+        </div>
       <% end %>
     </div>
   <% end %>

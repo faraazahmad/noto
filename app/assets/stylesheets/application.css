@@ -28,6 +28,12 @@ body * {
 	padding: 0.5rem;
 	border: solid 1px #eee;
 }
+.cell .output {
+	max-height: 10rem;
+	overflow: auto;
+	border: solid 1px #eee;
+	padding: 0 0.75rem;
+}
 code {
 	font-family: monospace;
 	padding: 0.25rem;
