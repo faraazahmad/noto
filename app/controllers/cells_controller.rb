@@ -97,6 +97,7 @@ class CellsController < ApplicationController
       $stdout.string
     rescue Exception => e
       $stdout.puts e.message
+      $stdout.puts e.backtrace
       $stdout.string
     ensure
       $stdout = original_stdout
